@@ -13,13 +13,13 @@
 #SBATCH --job-name=atac-seq_pipeline
 #SBATCH --output=%x-%j.SLURMout
 #SBATCH --mail-type=BEGIN,END,FAIL,TIME_LIMIT
-#SBATCH --mail-user=x_user@university.edu
+#SBATCH --mail-user=decenalo@msu.edu
 #SBATCH --error=%x-%j.SLURMerr
 
 ####################################################################################
 # Script: multi_species_atac_pipeline.sh
 # Purpose: Multi-species ATAC-seq pipeline with YAML configuration
-# Author: x_user, PhD
+# Author: Louis Paul Decena-Segarra, PhD
 # Created: 2025-06-02
 # Usage:
 #   Single species: sbatch --export=SPECIES_NAME=species_name multi_species_atac_pipeline.sh
@@ -46,7 +46,8 @@ set -euo pipefail
 ##### Global Configuration #####
 
 # Base directory containing all species folders
-BASE_DIR="/mnt/scratch/x_user/atac_seq_projects"
+BASE_DIR="/mnt/scratch/decenalo/atac_seq_projects"
+
 
 # Processing parameters (can be overridden by YAML)
 DEFAULT_THREADS=16
@@ -56,7 +57,9 @@ DEFAULT_MIN_MAPQ=5
 DEFAULT_TRIM_SETTINGS="ILLUMINACLIP:{ADAPTERS_PATH}:2:30:10 SLIDINGWINDOW:4:15 MINLEN:25"
 DEFAULT_BOWTIE2_OPTS="--very-sensitive --no-mixed --no-discordant --dovetail"
 
+
 # Pipeline control
+#Changing these parameters from true/false will change which steps are performed
 RUN_TRIMMING=true
 RUN_ALIGNMENT=true
 RUN_PEAK_CALLING=true
@@ -64,11 +67,14 @@ RUN_DEEPTOOLS=true
 CLEANUP_INTERMEDIATE=false
 
 # Email notifications
+#Change this to recieve updates to your email (please, don't keep my email in there)
 SEND_EMAIL_UPDATES=true
-EMAIL_ADDRESS="x_user@university.edu"
+EMAIL_ADDRESS="decenalo@msu.edu"
 
 ##### Functions #####
+#These functions do different things for the pipeline
 
+#Create log messages
 log_message() {
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1"
 }
@@ -85,6 +91,7 @@ log_stage() {
     fi
 }
 
+#Send emails
 send_email() {
     if [[ "$SEND_EMAIL_UPDATES" == "true" ]] && command -v mail >/dev/null 2>&1; then
         local subject="$1"
@@ -93,6 +100,7 @@ send_email() {
     fi
 }
 
+#Check if files exists
 check_file_exists() {
     if [[ ! -f "$1" ]]; then
         log_message "ERROR: Required file not found: $1"
@@ -100,6 +108,7 @@ check_file_exists() {
     fi
 }
 
+#Check if directories exist
 check_dir_exists() {
     if [[ ! -d "$1" ]]; then
         log_message "ERROR: Required directory not found: $1"
@@ -107,6 +116,7 @@ check_dir_exists() {
     fi
 }
 
+#Parse the yaml (configuration file) for each species
 parse_yaml() {
     local yaml_file="$1"
     local prefix="$2"
@@ -126,6 +136,7 @@ parse_yaml() {
     ' "$yaml_file"
 }
 
+#Load the species configuration from the yaml file
 load_species_config() {
     local species_dir="$1"
     local config_file="$species_dir/config.yaml"
@@ -191,6 +202,7 @@ load_species_config() {
     return 0
 }
 
+#Deploy species job (submiting and individual SLURM job for each species)
 deploy_species_job() {
     local species_name="$1"
     local species_dir="$BASE_DIR/$species_name"
@@ -212,6 +224,7 @@ deploy_species_job() {
     log_message "Job submitted for $species_name"
 }
 
+#Remove inermediate files
 cleanup_files() {
     local files=("$@")
     if [[ "$CLEANUP_INTERMEDIATE" == "true" ]]; then
@@ -227,7 +240,7 @@ cleanup_files() {
 ##### Main Pipeline Logic #####
 
 # Change to working directory
-cd /mnt/scratch/x_user/
+cd /mnt/scratch/decenalo/
 
 # Check if this is a deployment run
 if [[ "${DEPLOY_ALL:-false}" == "true" ]]; then
