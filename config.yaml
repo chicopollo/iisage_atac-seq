@@ -1,0 +1,30 @@
+# Species Configuration File
+# Place this file as config.yaml in each species directory
+
+# Species identification
+SPECIES_NAME: chrysemys_picta
+COMMON_NAME: Painted Turtle
+
+# Genome information
+GENOME_SIZE: 2.4e9
+REF_GENOME_FASTA: reference/GCF_011386835.1_ASM1138683v2_genomic.fna
+REF_GENOME: reference/genome_index
+
+# Sequencing adapters
+ADAPTERS_PATH: reference/adapters.fa
+
+# Processing parameters (optional - will use defaults if not specified)
+THREADS: 16
+MAX_INSERT_SIZE: 2000
+SIZE_SELECTION_CUTOFF: 100
+MIN_MAPQ: 5
+
+# Trimming settings (optional)
+TRIM_SETTINGS: "ILLUMINACLIP:{ADAPTERS_PATH}:2:30:10 SLIDINGWINDOW:4:15 MINLEN:25"
+
+# Bowtie2 alignment options (optional)
+BOWTIE2_OPTS: "--very-sensitive --no-mixed --no-discordant --dovetail"
+
+# Species-specific notes
+NOTES: "Chrysemys picta genome assembly version 2"
+NCBI_ACCESSION: GCF_011386835.1
