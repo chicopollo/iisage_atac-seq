@@ -45,9 +45,8 @@ set -euo pipefail
 
 ##### Global Configuration #####
 
-# Base directory containing all species folders
+# Base directory containing all species folders. Full path prefered
 BASE_DIR="/mnt/scratch/decenalo/atac_seq_projects"
-
 
 # Processing parameters (can be overridden by YAML)
 DEFAULT_THREADS=16
@@ -59,7 +58,7 @@ DEFAULT_BOWTIE2_OPTS="--very-sensitive --no-mixed --no-discordant --dovetail"
 
 
 # Pipeline control
-#Changing these parameters from true/false will change which steps are performed
+# Changing these parameters from true/false will change which steps are performed
 RUN_TRIMMING=true
 RUN_ALIGNMENT=true
 RUN_PEAK_CALLING=true

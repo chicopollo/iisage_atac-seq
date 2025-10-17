@@ -9,10 +9,10 @@
 
 ##### SLURM Resource Requests #####
 
-#SBATCH --time=48:00:00                          #How long the job will run (days-hours:minutes)
+#SBATCH --time=48:00:00                         #How long the job will run (days-hours:minutes)
 #SBATCH --nodes=1                               #How many compute nodes the job needs
 #SBATCH --ntasks=1                              #How many concurrent tasks the job needs
-#SBATCH --cpus-per-task=16                       #How many CPUs each task needs
+#SBATCH --cpus-per-task=16                      #How many CPUs each task needs
 #SBATCH --mem-per-cpu=8G                        #How much memory each CPU needs
 
 ##### SLURM Administrative Settings #####
@@ -25,9 +25,10 @@
 
 ##### bash  Commands to Run #####
 #unload all modules
+
 module purge
 
-#Change directory to main working area in hpcc
+#Change directory to main working area in hpcc, this is usually the scratch drive
 cd /mnt/scratch/decenalo/
 #Load required modules
 #TROUBLESHOOTING
