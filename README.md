@@ -27,7 +27,7 @@ R
 ## Directory structure
 
 For this pipeline to be completed effectively, organize your files in the following manner.
-
+```
  $BASE_DIR/
  ├── species1/
  │   ├── config.yaml
@@ -41,6 +41,6 @@ For this pipeline to be completed effectively, organize your files in the follow
      ├── samples/
      ├── reference/
      └── sample_metadata.xlsx
-
+```
 ## Troubleshooting
 There are instances in which the modules of your particular HPCC environment might not work so well together, or in which additional modules might be requires. While editing the script for submission, it is a good practice to run `$module spider MODULE_NAME` to analyze what are the main requirements
