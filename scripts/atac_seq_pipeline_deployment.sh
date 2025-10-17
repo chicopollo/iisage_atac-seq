@@ -1,6 +1,6 @@
 #!/bin/bash
 
-####################################################################################
+#######################################################################################
 # Script: atac_seq_pipeline_deployment.sh
 # Purpose: Helper script to deploy ATAC-seq pipeline jobs
 # Author: Louis Paul Decena-Segarra, PhD
@@ -10,7 +10,7 @@
 #   ./deploy_atac_pipeline.sh --species chrysemys_picta # Deploy single species
 #   ./deploy_atac_pipeline.sh --list                   # List available species
 #   ./deploy_atac_pipeline.sh --validate               # Validate all configurations
-####################################################################################
+######################################################################################
 
 set -euo pipefail
 
