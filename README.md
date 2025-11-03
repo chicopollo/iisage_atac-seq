@@ -48,7 +48,11 @@ For this pipeline to be completed effectively, organize your files in the follow
 In order to test this pipeline, you should send a message to abroniko@msu.edu to request a dataset of three reptile species (_Chrysemys picta_, _Thamnophis elegans_, and _Hemydactylus turcicus_). This dataset is already organized and contains the config.yaml files needed to run.
 
 If you are part of the Bronikowski Lab, you can access the data through the following path in "Carson":
+```
 /data/grpdata/broniko_lab/IISAGE_atac_seq/test_data
+```
+Within this folder you will find subfolders for each species.
+
 From your HPCC environment navigate to the directory in which you have the pipeline scripts and use rsync or scp to copy the data:
 
 ```
