@@ -33,6 +33,8 @@ For this pipeline to be completed effectively, organize your files in the follow
  │   ├── config.yaml
  │   ├── samples/
  │   │   ├── sample1/
+ |   |       ├──Reads1_fwd.fastq.gz
+ |   |       └──Reads2_rev_fastq.gz
  │   │   └── sample2/
  │   ├── reference/
  │   └── sample_metadata.xlsx
@@ -42,5 +44,20 @@ For this pipeline to be completed effectively, organize your files in the follow
      ├── reference/
      └── sample_metadata.xlsx
 ```
+## Test dataset
+In order to test this pipeline, you should send a message to abroniko@msu.edu to request a dataset of three reptile species (_Chrysemys picta_, _Thamnophis elegans_, and _Hemydactylus turcicus_). This dataset is already organized and contains the config.yaml files needed to run.
+
+If you are part of the Bronikowski Lab, you can access the data through the following path in "Carson":
+/data/grpdata/broniko_lab/IISAGE_atac_seq/test_data
+From your HPCC environment navigate to the directory in which you have the pipeline scripts and use rsync or scp to copy the data:
+
+```
+rsync -r $USER@carson.kbs.msu.edu:/data/grpdata/broniko_lab/IISAGE_atac_seq/test_data .
+```
+or
+```
+scp -r $USER@carson.kbs.msu.edu:/data/grpdata/broniko_lab/IISAGE_atac_seq/test_data .
+```
+
 ## Troubleshooting
 There are instances in which the modules of your particular HPCC environment might not work so well together, or in which additional modules might be requires. While editing the script for submission, it is a good practice to run `$module spider MODULE_NAME` to analyze what are the main requirements
