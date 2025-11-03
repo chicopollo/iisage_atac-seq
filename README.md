@@ -6,7 +6,10 @@ Comprehensive and standarized ATAC-seq analysis and figure generation pipeline f
 2. Organize data in the described directory structure
 3. Edit config/config.yaml (1 file for each species) and place it in the species folder
 4. Adjust paths and module names to match your environment in pipeline scripts
-5. Submit job using SBATCH
+5. Submit job using SBATCH ('multi_species_atac_pipeline.sh')
+6. Generate figures and tables using R ('generate_atac_figs.R')
+
+Note: I will integrate the figure generation to the main pipeline so it will all come out automatically.
 
 ## Features
 - Process multiple species at a time, ideal for comparative analysis
